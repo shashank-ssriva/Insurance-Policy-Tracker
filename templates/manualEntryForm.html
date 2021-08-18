@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/icons/life.png" />
+    <title>Insurance Policy Tracker</title>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit-icons.min.js"></script>
+</head>
+
+<body>
+    <nav class="uk-background-secondary uk-navbar-transparent uk-navbar-container uk-margin" uk-navbar>
+        <div class="uk-navbar-left uk-light">
+            <a class="uk-navbar-item uk-logo uk-text-emphasis" href="/">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>Insurance Policy Tracker
+            </a>
+
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="HDFClist" class="uk-text-emphasis">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: history"></span>
+                        <div uk-tooltip="title: All HDFC premium payment history; pos: bottom">HDFC Policies</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="LIClist" class="uk-text-emphasis">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: history"></span>
+                        <div uk-tooltip="title: All LIC premium payment history; pos: bottom">LIC Policies</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <h3><b> {{ msg }} </b></h3>
+    </div>
+    <div class="uk-container">
+        <div>
+            <form method="POST" id="signup-form" class="signup-form"
+                action="{{ url_for('manual_data_entry', filename=filename)}}">
+                <div>
+                    <h3>Beneficiary Basic Information</h3>
+                    <fieldset>
+                        <h2>Beneficiary Basic Information</h2>
+                        <p class="desc">Please enter your basic infomation and proceed to next step.</p>
+                        <div class="fieldset-content">
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Policy No.</label>
+                                <input type="text" name="policy_num" id="policy_num" required />
+                            </div>
+                            <div class="form-row">
+                                <label class="form-label">Beneficiary Name</label>
+                                <div class="form-flex">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" id="first_name" required />
+                                        <span class="text-input">First</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="middle_name" id="middle_name" />
+                                        <span class="text-input">Middle</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" />
+                                        <span class="text-input">Last</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <h3>Policy Details</h3>
+                    <fieldset>
+                        <h2>Policy Details</h2>
+                        <p class="desc">Please enter policy details and proceed to next step to add premium and maturity
+                            amount.</p>
+                        <div class="fieldset-content">
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Transaction No.</label>
+                                <input type="text" name="transaction_no" id="transaction_no" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="ssn" class="form-label">Receipt No.</label>
+                                <input type="text" name="receipt_no" id="receipt_no" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="doc" class="form-label">D.O.C</label>
+                                <input type="date" name="doc" id="doc" required />
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <h3>Instalment Details</h3>
+                    <fieldset>
+                        <h2>Instalment Details</h2>
+                        <p class="desc">Please enter premium instalment details.</p>
+                        <div class="fieldset-content">
+                            <div class="form-group">
+                                <label for="paid_on_date" class="form-label">Paid On Date</label>
+                                <input type="date" name="paid_on_date" id="paid_on_date" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Inst. Premium</label>
+                                <input type="text" name="inst_premium" id="inst_premium" required />
+                                <span class="text-input">(in digits)</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Sum Assured</label>
+                                <input type="text" name="sum_assured" id="sum_assured" required />
+                                <span class="text-input">(in digits)</span>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</body>
+
+</html>

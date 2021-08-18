@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>LIC Policy Policy Premium Payment History & List</title>
+	<meta charset="UTF-8">
+	<link rel="icon" type="image/png" href="images/icons/life.png" />
+	<title>Insurance Policy Tracker</title>
+	<!-- UIkit CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/css/uikit.min.css" />
+
+	<!-- UIkit JS -->
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit-icons.min.js"></script>
+</head>
+
+<body>
+	<nav class="uk-background-secondary uk-navbar-transparent uk-navbar-container uk-margin" uk-navbar>
+        <div class="uk-navbar-left uk-light">
+			<a class="uk-navbar-item uk-logo uk-text-emphasis" href="/">
+				<span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>Insurance Policy Tracker
+			</a>
+
+			<ul class="uk-navbar-nav">
+				<li>
+					<a href="HDFClist" class="uk-text-emphasis">
+						<span class="uk-icon uk-margin-small-right" uk-icon="icon: history"></span>
+						<div uk-tooltip="title: All HDFC premium payment history; pos: bottom">HDFC Policies</div>
+					</a>
+				</li>
+				<li>
+					<a href="LIClist" class="uk-text-emphasis">
+						<span class="uk-icon uk-margin-small-right" uk-icon="icon: history"></span>
+						<div uk-tooltip="title: All LIC premium payment history; pos: bottom">LIC Policies</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	{% if limit==0 %}
+	<center>
+		<article class="uk-article">
+			<h1 class="uk-article-title uk-text-danger uk-heading-bullet">History/List of LIC Policy premium
+					payments</h1>
+			<p class="uk-text-lead">There is nothing to show... No records/history found!!!..
+			</p>
+		</article>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<img data-src="images/sad.png" width="170" height="170" alt="" uk-img>
+	</center>
+
+	{% else %}
+	<div uk-scrollspy="cls:uk-animation-fade" class="uk-container">
+		<center>
+		<article class="uk-article">
+			<h1 class="uk-article-title uk-text-danger uk-heading-bullet">History/List of LIC Policy premium payments</h1>
+			<p class="uk-text-lead">Below is the history of all the payments done. You can download the individual receipts in form of
+				PDF files & also delete the individual entries.
+			</p>
+		</article>
+	</center>
+	<hr>
+		<table class="uk-table uk-table-striped uk-table-hover">
+			<thead>
+				<tr>
+					<th>Policy No.</th>
+					<th>Beneficiary Name</th>
+					<th>D.O.C</th>
+					<th>Inst. Premium</th>
+					<th>Sum Assured</th>
+					<th>Transaction No.</th>
+					<th>Paid on date</th>
+					<th>Receipt No.</th>
+					<th>Download</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				{% for row in rows[:limit] %}
+				<tr>
+					<td>{{row[0]}}</td>
+					<td>{{row[1]}}</td>
+					<td>{{row[2]}}</td>
+					<td>{{row[3]}}</td>
+					<td>{{row[4]}}</td>
+					<td>{{row[5]}}</td>
+					<td>{{row[6]}}</td>
+					<td>{{row[7]}}</td>
+					<td class="uk-animation-toggle"><a class="uk-text-success uk-animation-fade" href="{{ url_for('download_history_file', filename=row[8])}}" target="blank"><span uk-icon="icon: download"></span>Download PDF</a>
+					</td>
+					<td class="uk-animation-toggle"><a class="uk-text-danger uk-animation-fade" onclick="return confirm('Are you sure you want to delete this record?')"
+							href="{{ url_for('deleteLIC_history_file', filename=row[8], Transaction_No=row[5]) }}"><span uk-icon="icon: trash"></span>Delete</a>
+					</td>
+				</tr>
+
+				{% endfor %}
+			</tbody>
+		</table><br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<button class="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-custom; cls: uk-card-primary">Descriptive Statistics</button>
+		<div id="toggle-custom" class="uk-card uk-card-default uk-card-body uk-margin-small">Individual records sum</div>
+
+	</div>
+	{% endif %}
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</body>
+
+</html>

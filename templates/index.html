@@ -2,19 +2,76 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <title>LIC Policy</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/icons/life.png" />
+    <title>Insurance Policy Tracker</title>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit-icons.min.js"></script>
 </head>
 
 <body>
-   <div align="center">
-      <h1>LIC Policy </h1>
-      <h2>Upload new File</h2>
-      <form method=post enctype=multipart/form-data>
-         <p><input type=file name=file>
-            <input type=submit value=Upload>
-      </form>
-   </div>
+    <nav class="uk-background-secondary uk-navbar-transparent uk-navbar-container uk-margin" uk-navbar>
+        <div class="uk-navbar-left uk-light">
+            <a class="uk-navbar-item uk-logo uk-text-emphasis" href="/">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>Insurance Policy Tracker
+            </a>
+
+            <ul class="uk-navbar-nav">
+				<li>
+					<a href="HDFClist" class="uk-text-emphasis">
+						<span class="uk-icon uk-margin-small-right" uk-icon="icon: history"></span>
+						<div uk-tooltip="title: All HDFC premium payment history; pos: bottom">HDFC Policies</div>
+					</a>
+				</li>
+				<li>
+					<a href="LIClist" class="uk-text-emphasis">
+						<span class="uk-icon uk-margin-small-right" uk-icon="icon: history"></span>
+						<div uk-tooltip="title: All LIC premium payment history; pos: bottom">LIC Policies</div>
+					</a>
+				</li>
+			</ul>
+        </div>
+    </nav>
+
+    <!-- <div class="uk-container">{{ msg }} -->
+    <div uk-scrollspy="cls:uk-animation-fade" class="uk-container">
+        <div id="alert" class="uk-alert-danger" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p>{{msg}}</p>
+        </div>
+        <div align="center">
+            <h1 class="uk-heading-divider uk-heading-bullet uk-text-danger">INSURANCE POLICY TRACKER</h1>
+            <h2>Upload new file</h2>
+            <h4>You can upload <span uk-icon="icon: file-pdf"></span>PDF file of your policies (either LIC or HDFC) here
+                and track them.</h4>
+            <br>
+            <form method=post enctype=multipart/form-data>
+                <div class="uk-margin" uk-margin>
+                    <div uk-form-custom="target: true">
+                        <input type="file" name="file">
+                        <span uk-icon="icon: cloud-upload; ratio: 2"></span><input class="uk-input uk-form-width-medium"
+                            type="text" placeholder="Select PDF file" disabled>
+                    </div>
+                    <button class="uk-button uk-button-danger" id="submit" type="submit">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#alert").hide();
+            $("#submit").click(function () {
+                $("#alert").show();
+            });
+        });
+    </script>
 </body>
 
 </html>

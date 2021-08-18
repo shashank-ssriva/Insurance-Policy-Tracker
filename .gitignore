@@ -1,0 +1,6 @@
+uploads/
+.DS_Store
+static/.DS_Store
+templates/.DS_Store
+.vscode
+__pycache__/
